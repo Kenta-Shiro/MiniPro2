@@ -4,15 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Review {
-	//いらない変数
-	//private int reviewId;
+	// いらない変数
+	// private int reviewId;
 
 	private String reviewDate;
 
 	private String content;
 
 	private int reviewNo;
-	
+
 	private static int reviewID = 1;
 
 	private Member member;
@@ -27,7 +27,7 @@ public class Review {
 		this.member = member;
 	}
 
-	public int getReviewId() {//名前ややこしい
+	public int getReviewNo() {// 名前ややこしい
 		return reviewNo;
 	}
 
