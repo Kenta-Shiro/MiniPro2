@@ -1,4 +1,5 @@
-package 設計;
+package minipro2;
+
 
 public class Member {
 
@@ -9,19 +10,21 @@ public class Member {
 	private String name;
 
 	public Member(String name, String id, String pw) {
-
+		this.name = name;
+		this.id = id;
+		this.pw = pw;
 	}
 
 	public String getId() {
-		return null;
+		return id;
 	}
 
 	public String getName() {
-		return null;
+		return name;
 	}
 
 	public String getPw() {
-		return null;
+		return pw;
 	}
 
 }
