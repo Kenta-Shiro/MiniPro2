@@ -1,18 +1,15 @@
 package minipro2;
 
+import java.util.List;
+
 public class PostCon {
 
 	private TitleList titleList;
-
 	private ReviewMap reviewMap;
 
-	public PostCon(TitleList titleList, ReviewList reviewList) {
-        this.titleList = titleList;
-        this.reviewMap = reviewMap;
-	}
-	
-	public void Post(String content, Member member) {
-
+	public PostCon(TitleList titleList, ReviewMap reviewMap) {
+		this.titleList = titleList;
+		this.reviewMap = reviewMap;
 	}
 
 	public List<Title> browse() {
@@ -20,11 +17,11 @@ public class PostCon {
 	}
 
 	public List<Review> viewReviewList(int titleNo) {
-		return reviewMap.getReviewList(int titleNo);
+		return reviewMap.getReviewList(titleNo);
 	}
 
 	public void post(String content, Member member, int titleNo) {
-        return reviewMap.makeReview(String content, Member member, int titleNo);
+		reviewMap.makeReview(content, member, titleNo);
 	}
 
 }

@@ -1,18 +1,20 @@
 package minipro2;
 
+import java.util.List;
+
 public class MyReviewCon {
 
-	private ReviewMap reviewMap;;
+	private ReviewMap reviewMap;
 
 	public MyReviewCon(ReviewMap reviewMap) {
-        this.reviewMap = reviewMap;
+		this.reviewMap = reviewMap;
 	}
-	
+
 	public List<Review> getMyReveiwList(String id) {
-		return ReviewMao.getReviews(String id);
+		return reviewMap.getReviews(id);
 	}
 
 	public void deleteMyReview(int reviewNo) {
-        reviewMap.deleteReview(int reviewNo);
+		reviewMap.deleteReview(reviewNo);
 	}
 }
