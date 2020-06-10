@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 
 public class ReviewMap {
 
-	private HashMap<Integer, ReviewList> reviewmap;
+	private HashMap<Integer, ReviewList> reviewmap = new HashMap<Integer, ReviewList>();
 
 	/*
 	 * public void setTitle(int titleNo, ReviewList reviewlist) {

@@ -10,18 +10,20 @@ public class TitleCon {
 		this.titleList = titleList;
 	}
 	
-	public TitleList addTitle(String title) {
+	public void addTitle(String title) {
 		List<Title> tempList = titleList.getTitleList();
 		//判定
 		for(Title temp:tempList) {
 			if(title.equals(temp.getTitle())) {
 				System.out.println("タイトルが重複しています");
 			}else {
-				titleList.makeTitle(title);
-				System.out.println("タイトルが追加されました");
+				break;
 			}
 		}
-		return titleList;
+		//return titleList;
+		titleList.makeTitle(title);
+		System.out.println("タイトルが追加されました");
+		System.out.println("");
 	}
 
 }

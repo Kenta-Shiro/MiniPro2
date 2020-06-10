@@ -3,6 +3,8 @@ package minipro2;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UI {
 
@@ -18,7 +20,7 @@ public class UI {
 
 	private Member member;
 	
-	public UI(Login login, TitleCon titleCon, PostCon postCon, myReviewCon myReviewCon) {
+	public UI(Login login, TitleCon titleCon, PostCon postCon, MyReviewCon myReviewCon) {
 		this.login = login;
 		this.titleCon = titleCon;
 		this.postCon = postCon;
@@ -97,7 +99,7 @@ public class UI {
 		List<Review> reviews = new ArrayList<Review>();
 		reviews = myReviewCon.getMyReveiwList(id);
 		for (Review r : reviews) {
-			System.out.print(r.getReviewId() + ":");
+			System.out.print(r.getReviewNo() + ":");
 			System.out.println(r.getreviewsDate());
 			System.out.println(r.getContent());
 			System.out.println("");
@@ -123,6 +125,7 @@ public class UI {
 	}
 
 	private void inputTitle() {
+		System.out.println("タイトルを入力してください");
 		String title = this.stream();
 		titleCon.addTitle(title);
 		this.showMenu();
@@ -130,12 +133,14 @@ public class UI {
 
 	private void deleteReview() {
 		int reviewNo = Integer.parseInt(this.stream());
-		int titleNo = Integer.parseInt(this.stream());
-		myReviewCon.deleteMyReview(reviewNo,titleNo);
+		//int titleNo = Integer.parseInt(this.stream());
+		myReviewCon.deleteMyReview(reviewNo);
+		this.displayMyReviewList(member.getId());
 	}
 
 	private void displayReviewList() {
 		this.displayTitleList();
+		System.out.println("口コミを閲覧したいタイトルを選択してください");
 		titleNo = Integer.parseInt(this.stream());
 		List<Review> reviews = postCon.viewReviewList(titleNo);
 		for(Review review : reviews) {
