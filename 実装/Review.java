@@ -1,43 +1,46 @@
-package 設計;
+package minipro2;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Review {
-
-	private int reviewId;
+	//いらない変数
+	//private int reviewId;
 
 	private String reviewDate;
 
 	private String content;
 
-	private static int reviewID;
-
 	private int reviewNo;
-
-	private Member member;
-
-	private Member ユーザ;
-
-	private Member member;
+	
+	private static int reviewID = 1;
 
 	private Member member;
 
 	public Review(String content, Member member) {
-
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		reviewDate = sdf.format(date);
+		reviewNo = reviewID;
+		reviewID++;
+		this.content = content;
+		this.member = member;
 	}
 
-	public int getReviewId() {
-		return 0;
+	public int getReviewId() {//名前ややこしい
+		return reviewNo;
 	}
 
 	public String getreviewsDate() {
-		return null;
+		return reviewDate;
 	}
 
 	public String getContent() {
-		return null;
+		return content;
 	}
 
 	public Member getUser() {
-		return null;
+		return member;
 	}
 
 }
