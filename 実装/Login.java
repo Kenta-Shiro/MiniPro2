@@ -1,30 +1,26 @@
-package 設計;
+package minipro2;
 
-import 分析.String;
 
 public class Login {
 
 	private MemberList memberList;
-
-	private 会員リスト 会員リスト;
+	private Member user;
 
 	public Login(MemberList memberList) {
-
-	}
-
-	public boolean Judge(String id, String pw) {
-		return false;
-	}
-
-	public void getLogin() {
-
+		this.memberList = memberList;
 	}
 
 	public Member getUser() {
-		return null;
+		return user;
 	}
 
 	public boolean judge(String id, String pw) {
+		Member temp = memberList.getMember(id);
+		
+		if(pw.equals(temp.getPw())) {
+			user = temp;
+			return true;
+		}
 		return false;
 	}
 
