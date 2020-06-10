@@ -1,23 +1,18 @@
-package 設計;
+package minipro2;
 
 public class MyReviewCon {
 
-	private ReviewList reviewList;
+	private ReviewMap reviewMap;;
 
-	private Member member;
-
-	private 会員 会員;
-
-	public List getMyReveiwList(String id) {
-		return null;
+	public MyReviewCon(ReviewMap reviewMap) {
+        this.reviewMap = reviewMap;
+	}
+	
+	public List<Review> getMyReveiwList(String id) {
+		return ReviewMao.getReviews(String id);
 	}
 
 	public void deleteMyReview(int reviewNo) {
-
+        reviewMap.deleteReview(int reviewNo);
 	}
-
-	public MyReviewCon(ReviewList reviewList) {
-
-	}
-
 }
