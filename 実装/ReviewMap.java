@@ -8,11 +8,17 @@ import java.util.Map.Entry;
 public class ReviewMap {
 
 	private HashMap<Integer, ReviewList> reviewmap;
-	private ReviewList reviewlist;
+
+	/*
+	 * public void setTitle(int titleNo, ReviewList reviewlist) {
+	 * reviewmap.put(titleNo, reviewlist);
+	 * 
+	 * }
+	 */
 
 	// タイトルのレビュー一覧を呼び出す（PostCon）
 	public List<Review> getReviewList(int titleNo) {
-		return reviewlist.getReviewList();
+		return reviewmap.get(titleNo).getReviewList();
 	}
 
 	// 作成したタイトルを基にReviewListを作成（TitleList）
