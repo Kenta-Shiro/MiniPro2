@@ -1,33 +1,30 @@
-package 設計;
+package minipro2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UI {
 
 	private int titleNo;
 
-	private Member member;
-	
 	private MyReviewCon myReviewCon;
 
 	private TitleCon titleCon;
 
-    private PostCon postCon;
+	private PostCon postCon;
 
 	private Login login;
 
+	private Member member;
+	
 	public UI(Login login, TitleCon titleCon, PostCon postCon, myReviewCon myReviewCon) {
-        this.login = login;
-        this.titleCon = titleCon;
-        this.postCon = postCon;
-        this.myReviewCon = myReviewCon;
+		this.login = login;
+		this.titleCon = titleCon;
+		this.postCon = postCon;
+		this.myReviewCon = myReviewCon;
 	}
-
-	//コンソールからの入力受付
+	
 	private String stream() {
 		String line = "";
 		try {
@@ -39,31 +36,25 @@ public class UI {
 		}
 		return line;
 	}
-		/*多分なくても動く
-	private void inputLogin() {
-
-	}
-	 */
 	
 	public void start() {
-	// ログイン終了判定の変数
-		boolean isEnd = false;
-		String id;
-		String pw;
-		while (isEnd != true) {
-			System.out.println("IDを入力してください");
-			id = this.stream();
-			System.out.println("パスワードを入力してください");
-			pw = this.stream();
-			isEnd = login.judge(id, pw);
+		// ログイン終了判定の変数
+			boolean isEnd = false;
+			String id;
+			String pw;
+			while (isEnd != true) {
+				System.out.println("IDを入力してください");
+				id = this.stream();
+				System.out.println("パスワードを入力してください");
+				pw = this.stream();
+				isEnd = login.judge(id, pw);
+			}
+			this.member = login.getUser();
+			// メニュー表示
+			this.showMenu();
 		}
-		this.member = login.getUser();
-		// メニュー表示
-		this.showMenu();
-	}
 
 	private void showMenu() {
-
 		System.out.println("メニュー");
 		System.out.println("1:タイトルの追加");
 		System.out.println("2:口コミの閲覧");
@@ -103,7 +94,7 @@ public class UI {
 	}
 
 	private void displayMyReviewList(String id) {
-        List<Review> reviews = new ArrayList<Review>();
+		List<Review> reviews = new ArrayList<Review>();
 		reviews = myReviewCon.getMyReveiwList(id);
 		for (Review r : reviews) {
 			System.out.print(r.getReviewId() + ":");
@@ -131,32 +122,57 @@ public class UI {
 		}
 	}
 
-	private void inputReview() {
+	private void inputTitle() {
+		String title = this.stream();
+		titleCon.addTitle(title);
+		this.showMenu();
+	}
 
+	private void deleteReview() {
+		int reviewNo = Integer.parseInt(this.stream());
+		int titleNo = Integer.parseInt(this.stream());
+		myReviewCon.deleteMyReview(reviewNo,titleNo);
+	}
+
+	private void displayReviewList() {
+		this.displayTitleList();
+		titleNo = Integer.parseInt(this.stream());
+		List<Review> reviews = postCon.viewReviewList(titleNo);
+		for(Review review : reviews) {
+			System.out.println(review.getUser().getName());
+			System.out.println(review.getreviewsDate());
+			System.out.println(review.getContent());
+		}
+		System.out.println("1:口コミを投稿する");
+		System.out.println("2:タイトル一覧に戻る");
+		System.out.println("1,2以外:メニューに戻る");
+		String menuNo = this.stream();
+		switch(menuNo) {
+		case "1":
+			this.inputReview();
+			break;
+		case "2":
+			this.displayReviewList();//設計書から変更
+			break;
+		default:
+			this.showMenu();
+		}
+	}
+
+	private void displayTitleList() {
+		List<Title> titles =postCon.browse();
+		for(Title title : titles) {
+			System.out.print(title.getTitleNo() + ":");
+			System.out.println(title.getTitle());
+		}
+	}
+
+	private void inputReview() {
 		String content = this.stream();
 		postCon.post(content, member, titleNo);
 		System.out.println("口コミが投稿されました");
 		System.out.println("");
 		this.displayReviewList();
 	}
-
-	private void inputTitle() {
-
-	}
-
-	private void deleteReview() {
-
-	}
-
-	private void displayReviewList() {
-
-	}
-
-
-	private void displayTitleList() {
-
-	}
-
-
-
+	
 }
