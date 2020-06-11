@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import minipro2.ReviewList;
+
 public class ReviewMap {
 
 	private HashMap<Integer, ReviewList> reviewmap = new HashMap<Integer, ReviewList>();
@@ -63,5 +65,10 @@ public class ReviewMap {
 			}
 		}
 	}
+	
+	public HashMap<Integer, ReviewList> getReviewMap(){
+		return reviewmap;
+	}
+
 
 }
