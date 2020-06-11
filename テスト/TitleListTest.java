@@ -11,18 +11,18 @@ import org.junit.Test;
 public class TitleListTest {
 	TitleList titleList;
 	ReviewMap reviewMap;
-	// ReviewList reviewList;
-	int titleNo;
+	ReviewList reviewList;
 	Title title;
+	int titleNo;
 
 	@Before
 	public void setup() {
 		reviewMap = new ReviewMap();
 
 		titleList = new TitleList(reviewMap);
-		// reviewList = new ReviewList("abc", 1);
-		// titleNo = reviewList.getTitleNo();
-		// reviewMap.setTitle(titleNo, reviewList);
+		reviewList = new ReviewList("abc", 1);
+		titleNo = reviewList.getTitleNo();
+		reviewMap.setTitle(titleNo, reviewList);
 	}
 
 	@Test
@@ -33,6 +33,16 @@ public class TitleListTest {
 		List<Title> actual = titleList.getTitleList();
 
 		assertThat(actual, hasItem(expected_TitleList));
+	}
+
+	@Test
+	public void Test_MakeTitle() {
+		titleList.makeTitle("キングダム");
+		Title t2 = new Title("キングダム");
+		Title expected_MakeTitle = t2;
+		List<Title> actual = titleList.getTitleList();
+
+		assertThat(actual, hasItem(expected_MakeTitle));
 	}
 
 }
