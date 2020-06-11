@@ -1,11 +1,13 @@
 package minipro2;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Review {
 	// いらない変数
 	// private int reviewId;
+	private String title;
 
 	private String reviewDate;
 
@@ -17,12 +19,14 @@ public class Review {
 
 	private Member member;
 
-	public Review(String content, Member member) {
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		reviewDate = sdf.format(date);
+	public Review(String title,String content, Member member) {
+		LocalDateTime date1 = LocalDateTime.now();
+		DateTimeFormatter dtformat1 = 
+				DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		reviewDate = dtformat1.format(date1);
 		reviewNo = reviewID;
 		reviewID++;
+		this.title = title;
 		this.content = content;
 		this.member = member;
 	}
@@ -35,6 +39,10 @@ public class Review {
 		return reviewDate;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+	
 	public String getContent() {
 		return content;
 	}

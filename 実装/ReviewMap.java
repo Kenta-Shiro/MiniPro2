@@ -16,6 +16,9 @@ public class ReviewMap {
 	 * }
 	 */
 
+	public ReviewMap() {
+		this.makeReviewList("ワンピース", 1);
+	}
 	// タイトルのレビュー一覧を呼び出す（PostCon）
 	public List<Review> getReviewList(int titleNo) {
 		return reviewmap.get(titleNo).getReviewList();
@@ -30,7 +33,7 @@ public class ReviewMap {
 	// レビューを作成するメソッドをReviewListから呼び出す（TitleList）
 	public void makeReview(String content, Member member, int titleNo) {
 		ReviewList targetlist = reviewmap.get(titleNo);
-		targetlist.makeReview(content, member);
+		targetlist.makeReview(targetlist.getTitle(),content, member);
 	}
 
 	// ユーザの口コミを取得する（MyReviewCon）
