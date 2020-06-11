@@ -25,14 +25,15 @@ public class ReviewMapTest {
 		title1 = new Title("ワンピース");
 		title2 = new Title("キングダム");
 		reviewlist1 = new ReviewList(title1.getTitle(), title1.getTitleNo());
+		reviewlist2 = new ReviewList(title2.getTitle(), title2.getTitleNo());
 		reviewMap.setTitle(title1.getTitleNo(), reviewlist1);
 		reviewMap.setTitle(title2.getTitleNo(), reviewlist2);
-		reviewlist1.makeReview("おもしろい！！", member);
+		reviewlist1.makeReview("ワンピース", "おもしろい！", member);
 	}
 
 	@Test
 	public void レビューリストを取得する() {
-		Review expected = reviewlist1.getReviewList().get(1);
+		Review expected = reviewlist1.getReviewList().get(0);
 
 		List<Review> actual = reviewMap.getReviewList(1);
 
