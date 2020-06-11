@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import minipro2.ReviewList;
-
 public class ReviewMap {
 
 	private HashMap<Integer, ReviewList> reviewmap = new HashMap<Integer, ReviewList>();
@@ -21,6 +19,7 @@ public class ReviewMap {
 	public ReviewMap() {
 		this.makeReviewList("ワンピース", 1);
 	}
+
 	// タイトルのレビュー一覧を呼び出す（PostCon）
 	public List<Review> getReviewList(int titleNo) {
 		return reviewmap.get(titleNo).getReviewList();
@@ -35,7 +34,7 @@ public class ReviewMap {
 	// レビューを作成するメソッドをReviewListから呼び出す（TitleList）
 	public void makeReview(String content, Member member, int titleNo) {
 		ReviewList targetlist = reviewmap.get(titleNo);
-		targetlist.makeReview(targetlist.getTitle(),content, member);
+		targetlist.makeReview(targetlist.getTitle(), content, member);
 	}
 
 	// ユーザの口コミを取得する（MyReviewCon）
@@ -58,17 +57,13 @@ public class ReviewMap {
 		for (Entry<Integer, ReviewList> entry : reviewmap.entrySet()) {
 			ReviewList list = entry.getValue();//
 			for (int i = 0; i < list.getReviewList().size(); i++) {
-				Review r = list.getReviewList().get(i);
-				if (r.getReviewNo() == reviewNo) {
-					list.deleteReview(r);
-				}
+				list.deleteReview(reviewNo);
 			}
 		}
 	}
-	
-	public HashMap<Integer, ReviewList> getReviewMap(){
+
+	public HashMap<Integer, ReviewList> getReviewMap() {
 		return reviewmap;
 	}
-
 
 }

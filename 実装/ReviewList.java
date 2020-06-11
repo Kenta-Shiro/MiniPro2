@@ -32,13 +32,13 @@ public class ReviewList {
 		return reviews;
 	}
 
-	public void makeReview(String title,String content, Member member) {
-		Review r = new Review(title,content, member);
+	public void makeReview(String title, String content, Member member) {
+		Review r = new Review(title, content, member);
 		reviews.add(r);
 	}
 
 	public void deleteReview(int reviewNo) {
-		reviews.remove(reviewNo);
+		reviews.remove(reviewNo - 1);
 	}
 
 }

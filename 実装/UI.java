@@ -118,6 +118,7 @@ public class UI {
 			break;
 		case "2":
 			// 口コミの削除
+			System.out.println("削除したいレビューの番号を入力してください");
 			this.deleteReview();
 			break;
 		default:
@@ -153,8 +154,7 @@ public class UI {
 		List<Review> reviews = postCon.viewReviewList(titleNo);
 		if (reviews.size() == 0) {
 			System.out.println("まだ口コミがありません");
-		}
-		else {
+		} else {
 			for (Review review : reviews) {
 				System.out.println(review.getUser().getName());
 				System.out.println(review.getreviewsDate());
