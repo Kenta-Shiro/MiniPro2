@@ -16,8 +16,7 @@ public class TitleCon {
 		for(Title temp:tempList) {
 			if(title.equals(temp.getTitle())) {
 				System.out.println("タイトルが重複しています");
-			}else {
-				break;
+				return;
 			}
 		}
 		//return titleList;
