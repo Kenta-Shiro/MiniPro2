@@ -10,9 +10,8 @@ public class TitleList {
 
 	public TitleList(ReviewMap reviewMap) {
 		Title title1 = new Title("ワンピース");
-		Title title2 = new Title("");
 		titleList.add(title1);
-		titleList.add(title2);
+
 
 		this.reviewMap = reviewMap;
 	}

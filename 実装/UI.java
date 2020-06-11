@@ -90,7 +90,7 @@ public class UI {
 			// readerをclose()する
 			break;
 		default:
-			// メニュー再表示
+			// それ以外の入力はメニューの再表示
 			this.showMenu();
 		}
 	}
@@ -100,6 +100,7 @@ public class UI {
 		reviews = myReviewCon.getMyReveiwList(id);
 		for (Review r : reviews) {
 			System.out.print(r.getReviewNo() + ":");
+			System.out.println(r.getTitle());
 			System.out.println(r.getreviewsDate());
 			System.out.println(r.getContent());
 			System.out.println("");
@@ -128,6 +129,7 @@ public class UI {
 		System.out.println("タイトルを入力してください");
 		String title = this.stream();
 		titleCon.addTitle(title);
+		System.out.println("");
 		this.showMenu();
 	}
 
@@ -149,14 +151,21 @@ public class UI {
 			this.displayReviewList();// バグるかもしれない
 		}
 		List<Review> reviews = postCon.viewReviewList(titleNo);
-		for (Review review : reviews) {
-			System.out.println(review.getUser().getName());
-			System.out.println(review.getreviewsDate());
-			System.out.println(review.getContent());
+		if (reviews.size() == 0) {
+			System.out.println("まだ口コミがありません");
 		}
+		else {
+			for (Review review : reviews) {
+				System.out.println(review.getUser().getName());
+				System.out.println(review.getreviewsDate());
+				System.out.println(review.getContent());
+			}
+		}
+		System.out.println("");
 		System.out.println("1:口コミを投稿する");
 		System.out.println("2:タイトル一覧に戻る");
 		System.out.println("1,2以外:メニューに戻る");
+		System.out.println("希望の番号を入力してください");
 		String menuNo = this.stream();
 		switch (menuNo) {
 		case "1":
@@ -180,6 +189,7 @@ public class UI {
 
 	private void inputReview() {
 		System.out.println("");
+		System.out.println("口コミを入力してください");
 		String content = this.stream();
 		postCon.post(content, member, titleNo);
 		System.out.println("口コミが投稿されました");
