@@ -1,6 +1,7 @@
 package minipro2;
 
 import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.util.List;
@@ -38,11 +39,10 @@ public class TitleListTest {
 	@Test
 	public void Test_MakeTitle() {
 		titleList.makeTitle("キングダム");
-		Title t2 = new Title("キングダム");
-		Title expected_MakeTitle = t2;
-		List<Title> actual = titleList.getTitleList();
+		String expected_MakeTitle = "キングダム";
+		String actual = titleList.getTitleList().get(2).getTitle();
 
-		assertThat(actual, hasItem(expected_MakeTitle));
+		assertThat(actual, is(expected_MakeTitle));
 	}
 
 }
