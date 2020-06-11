@@ -37,8 +37,8 @@ public class ReviewList {
 		reviews.add(r);
 	}
 
-	public void deleteReview(Review review) {
-		reviews.remove(review);
+	public void deleteReview(int reviewNo) {
+		reviews.remove(reviewNo);
 	}
 
 }
