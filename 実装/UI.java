@@ -103,10 +103,10 @@ public class UI {
 			System.out.println(r.getTitle());
 			System.out.println(r.getreviewsDate());
 			System.out.println(r.getContent());
-			System.out.println("");
+			System.out.println("-------------------");
 		}
 		System.out.println("");
-		System.out.println("1:メニューを表示を選択");
+		System.out.println("1:メニューを表示");
 		System.out.println("2:投稿した口コミの削除");
 		System.out.println("希望の番号を入力してください");
 		String n = this.stream();
@@ -159,6 +159,7 @@ public class UI {
 				System.out.println(review.getUser().getName());
 				System.out.println(review.getreviewsDate());
 				System.out.println(review.getContent());
+				System.out.println("-------------------");
 			}
 		}
 		System.out.println("");
