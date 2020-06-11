@@ -5,8 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Review {
-	// いらない変数
-	// private int reviewId;
+
 	private String title;
 
 	private String reviewDate;
@@ -31,7 +30,7 @@ public class Review {
 		this.member = member;
 	}
 
-	public int getReviewNo() {// 名前ややこしい
+	public int getReviewNo() {
 		return reviewNo;
 	}
 

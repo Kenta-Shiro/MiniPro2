@@ -16,11 +16,11 @@ public class ReviewList {
 		this.titleNo = titleNo;
 	}
 
-	public String getTitle() {// 新規追加
+	public String getTitle() {
 		return title;
 	}
 
-	public int getTitleNo() {// 新規追加
+	public int getTitleNo() {
 		return titleNo;
 	}
 
