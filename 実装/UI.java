@@ -39,7 +39,6 @@ public class UI {
 	}
 
 	public void start() {
-		// ログイン終了判定の変数
 		boolean isEnd = false;
 		String id;
 		String pw;
@@ -51,7 +50,6 @@ public class UI {
 			isEnd = login.judge(id, pw);
 		}
 		this.member = login.getUser();
-		// メニュー表示
 		this.showMenu();
 	}
 
@@ -87,7 +85,6 @@ public class UI {
 			break;
 		case "6":
 			// 終了
-			// readerをclose()する
 			break;
 		default:
 			// それ以外の入力はメニューの再表示
@@ -136,7 +133,6 @@ public class UI {
 
 	private void deleteReview() {
 		int reviewNo = Integer.parseInt(this.stream());
-		// int titleNo = Integer.parseInt(this.stream());
 		myReviewCon.deleteMyReview(reviewNo);
 		this.displayMyReviewList(member.getId());
 	}
@@ -147,9 +143,8 @@ public class UI {
 		try {
 			titleNo = Integer.parseInt(this.stream());
 		} catch (NumberFormatException e) {
-			// TODO 自動生成された catch ブロック
 			System.out.println("数字を入力してください");
-			this.displayReviewList();// バグるかもしれない
+			this.displayReviewList();
 		}
 		List<Review> reviews = postCon.viewReviewList(titleNo);
 		if (reviews.size() == 0) {
@@ -173,7 +168,7 @@ public class UI {
 			this.inputReview();
 			break;
 		case "2":
-			this.displayReviewList();// 設計書から変更
+			this.displayReviewList();
 			break;
 		default:
 			this.showMenu();
