@@ -1,4 +1,4 @@
-package minipro2;
+package minipro3;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,10 +39,47 @@ public class UI {
 	}
 
 	public void start() {
+		System.out.println("漫画口コミ投稿システム");
+		System.out.println("1:ログインする");
+		System.out.println("2:ログインしない");
+		System.out.println("希望の番号を入力してください");
+		String menuNo = this.stream();
+		switch(menuNo) {
+		case "1":
+			this.inputLogin();
+			break;
+		case "2":
+			this.showGuestMenu();
+			break;
+		default:
+			this.start();
+		}
+	}
+	
+	private void showGuestMenu() {
+		System.out.println("ゲストメニュー");
+		System.out.println("1:口コミの閲覧");
+		System.out.println("2:会員登録");
+		System.out.println("希望の番号を入力してください");
+		String menuNo = this.stream();
+		switch(menuNo) {
+		case "1":
+			this.displayReviewList();
+			break;
+		case "2":
+			//entry.inputEntry();
+			break;
+		default:
+			break;
+		}
+	}
+	
+	private void inputLogin() {//private
 		boolean isEnd = false;
 		String id;
 		String pw;
 		while (isEnd != true) {
+			System.out.println("ログイン");
 			System.out.println("IDを入力してください");
 			id = this.stream();
 			System.out.println("パスワードを入力してください");
@@ -79,6 +116,7 @@ public class UI {
 		case "4":
 			// 自分の口コミリストの閲覧
 			this.displayMyReviewList(member.getId());
+			break;
 		case "5":
 			// 投稿した口コミの削除
 			this.deleteReview();
@@ -91,50 +129,13 @@ public class UI {
 			this.showMenu();
 		}
 	}
-
-	private void displayMyReviewList(String id) {
-		List<Review> reviews = new ArrayList<Review>();
-		reviews = myReviewCon.getMyReveiwList(id);
-		for (Review r : reviews) {
-			System.out.print(r.getReviewNo() + ":");
-			System.out.println(r.getTitle());
-			System.out.println(r.getreviewsDate());
-			System.out.println(r.getContent());
-			System.out.println("-------------------");
-		}
-		System.out.println("");
-		System.out.println("1:メニューを表示");
-		System.out.println("2:投稿した口コミの削除");
-		System.out.println("希望の番号を入力してください");
-		String n = this.stream();
-
-		switch (n) {
-		case "1":
-			// メニューを表示
-			this.showMenu();
-			break;
-		case "2":
-			// 口コミの削除
-			System.out.println("削除したいレビューの番号を入力してください");
-			this.deleteReview();
-			break;
-		default:
-			this.displayMyReviewList(id);
-		}
-	}
-
+	
 	private void inputTitle() {
 		System.out.println("タイトルを入力してください");
 		String title = this.stream();
 		titleCon.addTitle(title);
 		System.out.println("");
 		this.showMenu();
-	}
-
-	private void deleteReview() {
-		int reviewNo = Integer.parseInt(this.stream());
-		myReviewCon.deleteMyReview(reviewNo);
-		this.displayMyReviewList(member.getId());
 	}
 
 	private void displayReviewList() {
@@ -158,31 +159,33 @@ public class UI {
 			}
 		}
 		System.out.println("");
-		System.out.println("1:口コミを投稿する");
-		System.out.println("2:タイトル一覧に戻る");
-		System.out.println("1,2以外:メニューに戻る");
+		System.out.println("1:タイトル一覧に戻る");
+		if(member != null) {
+			System.out.println("2:口コミを投稿する");
+		}
+		System.out.println("上記以外:メニューに戻る");
 		System.out.println("希望の番号を入力してください");
 		String menuNo = this.stream();
 		switch (menuNo) {
 		case "1":
-			this.inputReview();
-			break;
-		case "2":
 			this.displayReviewList();
 			break;
+		case "2":
+			if(member != null) {
+				this.inputReview();
+			}else {
+				this.showGuestMenu();
+			}
+			break;
 		default:
-			this.showMenu();
+			if(member != null) {
+				this.showMenu();
+			}else {
+				this.showGuestMenu();
+			}
 		}
 	}
-
-	private void displayTitleList() {
-		List<Title> titles = postCon.browse();
-		for (Title title : titles) {
-			System.out.print(title.getTitleNo() + ":");
-			System.out.println(title.getTitle());
-		}
-	}
-
+	
 	private void inputReview() {
 		System.out.println("");
 		System.out.println("口コミを入力してください");
@@ -191,6 +194,59 @@ public class UI {
 		System.out.println("口コミが投稿されました");
 		System.out.println("");
 		this.displayReviewList();
+	}
+	
+	private void displayTitleList() {
+		System.out.println("タイトル一覧");
+		List<Title> titles = postCon.browse();
+		for (Title title : titles) {
+			System.out.print(title.getTitleNo() + ":");
+			System.out.println(title.getTitle());
+		}
+	}
+	
+	private void displayMyReviewList(String id) {
+		List<Review> reviews = new ArrayList<Review>();
+		reviews = myReviewCon.getMyReveiwList(id);
+		for (Review r : reviews) {
+			System.out.print(r.getReviewNo() + ":");
+			System.out.println(r.getTitle());
+			System.out.println(r.getreviewsDate());
+			System.out.println(r.getContent());
+			System.out.println("-------------------");
+		}
+		System.out.println("");
+		System.out.println("1:メニューを表示");
+		System.out.println("2:投稿した口コミの削除");
+		System.out.println("希望の番号を入力してください");
+		String n = this.stream();
+
+		switch (n) {
+		case "1":
+			// メニューを表示
+			this.showMenu();
+			break;
+		case "2":
+			// 口コミの削除
+			this.deleteReview();
+			break;
+		default:
+			this.displayMyReviewList(id);
+		}
+	}
+
+	private void deleteReview() {
+		System.out.println("削除したいレビューの番号を入力してください");
+		System.out.println("削除をやめてメニューに戻る場合はその他の番号を入力してください");
+		try {
+			int reviewNo = Integer.parseInt(this.stream());
+			myReviewCon.deleteMyReview(reviewNo);
+			System.out.println("削除しました");
+			this.displayMyReviewList(member.getId());
+		}catch(IndexOutOfBoundsException e) {
+			this.showMenu();
+		}
+		
 	}
 
 }
