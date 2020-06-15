@@ -21,6 +21,7 @@ public class Entry {
 		boolean check = false;
 		for (Member temp : members) {
 			if (temp.getId().equals(id)) {
+				System.out.println("既に存在するIDです");
 				check = true;
 			}
 		}
