@@ -148,23 +148,24 @@ public class UI {
 
 	// 口コミの閲覧
 	private void displayReviewList() {
+		List<Review> reviews = null;
 		this.displayTitleList();
 		System.out.println("口コミを閲覧したいタイトルを選択してください");
 		System.out.println("メニューに戻る場合はその他の番号を入力してください");
 		try {
 			titleNo = Integer.parseInt(this.stream());
+			reviews = postCon.viewReviewList(titleNo);
+		} catch (NullPointerException e) {
+			this.showMenu();
 		} catch (NumberFormatException e) {
 			System.out.println("数字を入力してください");
 			this.displayReviewList();
-		} catch (NullPointerException e) {
-			this.showMenu();
 		}
-		List<Review> reviews = postCon.viewReviewList(titleNo);
 		if (reviews.size() == 0) {
 			System.out.println("まだ口コミがありません");
 		} else {
 			for (Review review : reviews) {
-				System.out.println(review.getUser().getName());
+				System.out.print(review.getUser().getName() + ":");
 				System.out.println(review.getreviewsDate());
 				System.out.println(review.getContent());
 				System.out.println("-------------------");
