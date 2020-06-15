@@ -1,10 +1,8 @@
-package minipro2;
+package minipro3;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import minipro2.ReviewList;
 
 public class TitleList {
 
