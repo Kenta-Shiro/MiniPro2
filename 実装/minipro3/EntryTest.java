@@ -24,7 +24,7 @@ public class EntryTest {
 
 	@Test
 	public void test1() {
-		boolean actual = e.isRegistered("abc", members);
+		boolean actual = e.isRegistered("abc");
 		boolean expected = true;
 
 		assertThat(actual, is(expected));
@@ -32,7 +32,7 @@ public class EntryTest {
 
 	@Test
 	public void test2() {
-		boolean actual = e.isRegistered("xyz", members);
+		boolean actual = e.isRegistered("xyz");
 		boolean expected = false;
 
 		assertThat(actual, is(expected));
