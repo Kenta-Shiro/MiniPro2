@@ -1,13 +1,13 @@
-package minipro2;
+package minipro3;
 
 
 public class Login {
 
-	private MemberList memberList;
+	private MemberDAO memberDAO;
 	private Member user;
 
-	public Login(MemberList memberList) {
-		this.memberList = memberList;
+	public Login(MemberDAO memberDAO) {
+		this.memberDAO = memberDAO;
 	}
 
 	public Member getUser() {
@@ -15,7 +15,7 @@ public class Login {
 	}
 
 	public boolean judge(String id, String pw) {
-		Member temp = memberList.getMember(id);
+		Member temp = memberDAO.getMember(id);
 		
 		if(pw.equals(temp.getPw())) {
 			user = temp;

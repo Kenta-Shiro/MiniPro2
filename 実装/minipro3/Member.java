@@ -1,4 +1,4 @@
-package minipro2;
+package minipro3;
 
 
 public class Member {
