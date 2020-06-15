@@ -1,6 +1,8 @@
-package minipro2;
+package minipro3;
 
 import java.util.List;
+
+import DAO.MemberDAO;
 
 public class Entry {
 
@@ -12,22 +14,23 @@ public class Entry {
 
 	public void entryMember(String name, String id, String pw) {
 		List<Member> members = memberDAO.getMemberList();
-		
-		if(this.isRegistered(id, members)) {
+
+		if (this.isRegistered(id, members)) {
 			System.out.println("既に存在しているIDです。");
-		}else {
+		} else {
 			memberDAO.setMember(name, id, pw);
 		}
 
 	}
 
-	private boolean isRegistered(String id, List<Member> members) {
-		for(Member temp: members) {
-			if(temp.getId() == id) {
-				return true;
+	boolean isRegistered(String id, List<Member> members) {
+		boolean check = false;
+		for (Member temp : members) {
+			if (temp.getId().equals(id)) {
+				check = true;
 			}
 		}
-		return false;
+		return check;
 	}
 
 }
