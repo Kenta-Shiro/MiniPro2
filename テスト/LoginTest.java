@@ -1,4 +1,4 @@
-package minipro2;
+package minipro3;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -7,13 +7,13 @@ import static org.hamcrest.CoreMatchers.is;
 
 public class LoginTest {
 
-	MemberList memberList;
+	MemberDAO memberDAO;
 	Login login;
 	
 	@Before
 	public void setUp() {
-		memberList = new MemberList();
-		login = new Login(memberList);
+		memberDAO = new MemberDAO();
+		login = new Login(memberDAO);
 	}
 	
 	@Test 
