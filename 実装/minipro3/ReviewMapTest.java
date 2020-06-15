@@ -1,4 +1,4 @@
-package minipro2;
+package minipro3;
 
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.instanceOf;
