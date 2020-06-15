@@ -1,5 +1,4 @@
-package minipro2;
-
+package minipro3;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,10 +17,9 @@ public class Review {
 
 	private Member member;
 
-	public Review(String title,String content, Member member) {
+	public Review(String title, String content, Member member) {
 		LocalDateTime date1 = LocalDateTime.now();
-		DateTimeFormatter dtformat1 = 
-				DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		DateTimeFormatter dtformat1 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		reviewDate = dtformat1.format(date1);
 		reviewNo = reviewID;
 		reviewID++;
@@ -41,7 +39,7 @@ public class Review {
 	public String getTitle() {
 		return title;
 	}
-	
+
 	public String getContent() {
 		return content;
 	}

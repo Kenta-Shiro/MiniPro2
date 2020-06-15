@@ -1,11 +1,11 @@
-package minipro2;
+package minipro3;
 
 public class Title {
-	//タイトル名
+	// タイトル名
 	private String titleName;
-	//タイトル番号
+	// タイトル番号
 	private int titleNo;
-	//タイトルが生成されるたびに1増える変数
+	// タイトルが生成されるたびに1増える変数
 	private static int titleID = 1;
 
 	public Title(String titleName) {
