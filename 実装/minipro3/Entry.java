@@ -13,17 +13,11 @@ public class Entry {
 	}
 
 	public void entryMember(String name, String id, String pw) {
-		List<Member> members = memberDAO.getMemberList();
-
-		if (this.isRegistered(id, members)) {
-			System.out.println("既に存在しているIDです。");
-		} else {
-			memberDAO.setMember(name, id, pw);
-		}
-
+		memberDAO.setMember(name, id, pw);
 	}
 
-	boolean isRegistered(String id, List<Member> members) {
+	public boolean isRegistered(String id) {
+		List<Member> members = memberDAO.getMemberList();
 		boolean check = false;
 		for (Member temp : members) {
 			if (temp.getId().equals(id)) {

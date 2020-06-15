@@ -1,5 +1,6 @@
 package minipro3;
 
+import DAO.MemberDAO;
 
 public class Login {
 
@@ -16,8 +17,8 @@ public class Login {
 
 	public boolean judge(String id, String pw) {
 		Member temp = memberDAO.getMember(id);
-		
-		if(pw.equals(temp.getPw())) {
+
+		if (pw.equals(temp.getPw())) {
 			user = temp;
 			return true;
 		}
